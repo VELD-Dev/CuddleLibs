@@ -1,4 +1,7 @@
 # Nautilus Extensions by V E L D
+![Lines of code](https://img.shields.io/tokei/lines/github/VELD-Dev/Nautilus-Extensions)
+![GitHub tag](https://img.shields.io/github/v/tag/SubnauticaModding/Nautilus?label=nautilus)  
+  
 A bunch of extensions made by me for modders, they are globally only maintained by me and made for my needs, but I'm totally open to pull requests, suggestions, issues etc...  
 I've been working on that because many of my ideas would probably bloat Nautilus more than it is already, so I just make a bunch of additional libs.
 
@@ -12,6 +15,8 @@ Then, all you have to do is to add it as a reference and you're ready to go, the
 ---
 
 ## 🪨 `Nautilus.OutcropsHelper`
+![GitHub tag (with filter)](https://img.shields.io/github/v/tag/VELD-Dev/Nautilus-Extensions?filter=outrcrops-*&label=outcrops-helper)  
+  
 Nautilus Outcrops Helper is a lib that lets developers easily add their ores to drops of certain chunks/outcrops, for example I can add a Coal drop to Limestones by doing this:
 
 ```csharp
