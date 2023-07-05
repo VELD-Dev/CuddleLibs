@@ -1,15 +1,16 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // Les informations générales relatives à un assembly dépendent de
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("OutcropsHelper")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("CuddeLibs")]
+[assembly: AssemblyDescription("A bunch of libraries AND library extensions of Nautilus.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("OutcropsHelper")]
+[assembly: AssemblyCompany("VELD-Dev")]
+[assembly: AssemblyProduct("CuddleLibs")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +33,6 @@ using System.Runtime.InteropServices;
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion(LibInfo.LIB_VERS)]
+[assembly: AssemblyFileVersion(LibInfo.LIB_LONGVERSION)]
+[assembly: NeutralResourcesLanguage("en")]

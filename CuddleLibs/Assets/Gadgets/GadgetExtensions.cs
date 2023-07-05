@@ -1,12 +1,8 @@
-﻿using Nautilus.Assets;
-using Nautilus.Extensions;
-using Nautilus.OutcropsHelper.Interfaces;
-using Nautilus.OutcropsHelper.Utility;
-using System;
-using System.Collections.Generic;
+﻿namespace CuddleLibs.Assets.Gadgets;
 
-namespace Nautilus.OutcropsHelper;
-
+/// <summary>
+/// <inheritdoc cref="Nautilus.Assets.Gadgets.GadgetExtensions"/>
+/// </summary>
 public static class GadgetExtension
 {
     /// <summary>

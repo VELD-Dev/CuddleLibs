@@ -9,10 +9,10 @@
     <ProjectGuid>{D1126CE6-2AFC-4F66-86BE-1CCA43B3946C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nautilus.OutcropsHelper</RootNamespace>
+    <RootNamespace>CuddleLibs</RootNamespace>
     <BepInExPluginGuid>com.snmodding.nautilus.outcropshelper</BepInExPluginGuid>
     <BepInExPluginVersion>$(VersionPrefix)</BepInExPluginVersion>
-    <AssemblyName>Nautilus.OutcropsHelper</AssemblyName>
+    <AssemblyName>CuddleLibs</AssemblyName>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <Configurations>SN.STABLE;BZ.STABLE</Configurations>
@@ -30,7 +30,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>BELOWZERO;BELOWZERO_STABLE</DefineConstants>
-    <DocumentationFile>bin\Release\Nautilus.OutcropsHelper.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\CuddleLibs.xml</DocumentationFile>
     <Description>Core library for modding Subnautica and Below Zero.</Description>
     <PackageId>Subnautica.Nautilus</PackageId>
     <PackageTags>Nautilus;Subnautica Below Zero Modding Library;Subnautica Below Zero Modding API;SubnauticaZero;BZ;Subnautica Modding Library;Subnautica Modding API;Subnautica;SN1;Modding;Library;API;Extension;Outcrops</PackageTags>
@@ -75,12 +75,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Gadgets\GadgetExtensions.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="Interfaces\OutcropDropData.cs" />
     <Compile Include="Patchers\BreakableResourcePatcher.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\InternalLogger.cs" />
     <Compile Include="Utility\OutcropsUtils.cs" />
+    <Compile Include="LibInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="PolySharp">

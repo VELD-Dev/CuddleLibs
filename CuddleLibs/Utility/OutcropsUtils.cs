@@ -1,14 +1,4 @@
-﻿using Nautilus.OutcropsHelper.Interfaces;
-using Nautilus.OutcropsHelper.Patchers;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEngine;
-using UWE;
-
-namespace Nautilus.OutcropsHelper.Utility;
+﻿namespace CuddleLibs.Utility;
 
 /// <summary>
 /// An helper and extender for Breakable Resource.
@@ -102,18 +92,19 @@ public static class OutcropsUtils
     }
 
     /// <summary>
-    /// Adds an outcrop drop data for a specific outcrop type.
+    /// Adds an outcrop drop data for a specific outcrop type.<br/>
+    /// Recommended value for chance: &lt;0.5f
     /// </summary>
     /// <param name="resourceTechType"><see cref="TechType"/> of the resource to spawn when an outcrop is broken.</param>
     /// <param name="outcropTechType"><see cref="TechType"/> of the outcrop.</param>
-    /// <param name="chance">Spawn chance (between 0 and 1)</param>
+    /// <param name="chance">Spawn chance (between 0 and 1)<br/>Recommended value: &lt;0.5f </param>
     /// <returns>An instance of the created <see cref="OutcropDropData"/>.</returns>
-    public static OutcropDropData EnsureOutcropDrop(TechType resourceTechType, TechType outcropTechType, float chance = 0.5f)
+    public static OutcropDropData EnsureOutcropDrop(TechType resourceTechType, TechType outcropTechType, float chance = 0.25f)
     {
         if (BreakableResourcePatcher.CustomDrops.ContainsKey(outcropTechType))
         {
             var outcropDropsDatas = BreakableResourcePatcher.CustomDrops[outcropTechType];
-            if (outcropDropsDatas.Find((odd) => odd.resourceTechType == resourceTechType) == null)
+            if (outcropDropsDatas.Find((ocdd) => ocdd.resourceTechType == resourceTechType) == null)
             {
                 OutcropDropData data = new() { resourceTechType = resourceTechType, chance = chance };
                 BreakableResourcePatcher.CustomDrops[outcropTechType].Add(data);
@@ -132,6 +123,79 @@ public static class OutcropsUtils
             BreakableResourcePatcher.CustomDrops.Add(new(outcropTechType, new() { data }));
             return data;
         }
+    }
+
+    /// <summary>
+    /// <inheritdoc cref="EnsureOutcropDrop(TechType, TechType, float)"/>
+    /// </summary>
+    /// <param name="dropData">An instance of drop data.</param>
+    /// <param name="outcropTechType"><inheritdoc cref="EnsureOutcropDrop(TechType, TechType, float)" path="/param[@name='outcropTechType']"/></param>
+    /// <returns><inheritdoc cref="EnsureOutcropDrop(TechType, TechType, float)" path="/returns"/></returns>
+    public static OutcropDropData EnsureOutcropDrop(OutcropDropData dropData, TechType outcropTechType)
+    {
+        return EnsureOutcropDrop(dropData.resourceTechType, outcropTechType, dropData.chance);
+    }
+
+    /// <summary>
+    /// Sets an outcrop drop data for a specific outcrop type if it does not already exists, otherwise abort.
+    /// </summary>
+    /// <param name="resourceTechType"><inheritdoc cref="EnsureOutcropDrop(TechType, TechType, float)" path="/param[@name='resourceTechType']"/></param>
+    /// <param name="outcropTechType"><inheritdoc cref="EnsureOutcropDrop(TechType, TechType, float)" path="/param[@name='outcropTechType']"/></param>
+    /// <param name="chance"><inheritdoc cref="EnsureOutcropDrop(TechType, TechType, float)" path="/param[@name='chance']"/></param>
+    /// <param name="dropData"><inheritdoc cref="EnsureOutcropDrop(TechType, TechType, float)" path="/returns"/></param>
+    /// <returns>True if the outcrop drop data have been created, false if an entry was already existing for it.</returns>
+    public static bool SetOutcropDrop(TechType resourceTechType, TechType outcropTechType, out OutcropDropData dropData, float chance = 0.25f)
+    {
+        if (BreakableResourcePatcher.CustomDrops.ContainsKey(outcropTechType))
+        {
+            if (BreakableResourcePatcher.CustomDrops[outcropTechType].Exists((ocdd) => ocdd.resourceTechType == resourceTechType))
+            {
+                dropData = BreakableResourcePatcher.CustomDrops[outcropTechType].Find((ocdd) => ocdd.resourceTechType == resourceTechType);
+                return false;  // No, it did not add a new OutcropDropData.
+            }
+
+            dropData = new() { resourceTechType = resourceTechType, chance = chance };
+            BreakableResourcePatcher.CustomDrops[outcropTechType].Add(dropData);
+            return true;
+        }
+        dropData = new() { resourceTechType = resourceTechType, chance = chance };
+        BreakableResourcePatcher.CustomDrops.Add(new(outcropTechType, new() { dropData }));
+        return true;
+    }
+
+    /// <summary>
+    /// <inheritdoc cref="SetOutcropDrop(TechType, TechType, out OutcropDropData, float)"/>
+    /// </summary>
+    /// <param name="resourceTechType"><inheritdoc cref="SetOutcropDrop(TechType, TechType, out OutcropDropData, float)" path="/param[@name='resourceTechType']"/></param>
+    /// <param name="outcropTechType"><inheritdoc cref="SetOutcropDrop(TechType, TechType, out OutcropDropData, float)" path="/param[@name='outcropTechType']"/></param>
+    /// <param name="chance"><inheritdoc cref="SetOutcropDrop(TechType, TechType, out OutcropDropData, float)" path="/param[@name='chance']"/></param>
+    /// <returns><inheritdoc cref="SetOutcropDrop(TechType, TechType, out OutcropDropData, float)" path="/returns"/></returns>
+    public static bool SetOutcropDrop(TechType resourceTechType, TechType outcropTechType, float chance = 0.25f)
+    {
+        return SetOutcropDrop(resourceTechType, outcropTechType, out _, chance);
+    }
+
+    /// <summary>
+    /// <inheritdoc cref="SetOutcropDrop(TechType, TechType, out OutcropDropData, float)"/>
+    /// </summary>
+    /// <param name="dropData">An instance of drop data.</param>
+    /// <param name="outcropTechType"><inheritdoc cref="SetOutcropDrop(TechType, TechType, out OutcropDropData, float)" path="/param[@name='outcropTechType']"/></param>
+    /// <param name="outputDropData"><inheritdoc cref="SetOutcropDrop(TechType, TechType, out OutcropDropData, float)" path="/param[@name='dropData']"/></param>
+    /// <returns></returns>
+    public static bool SetOutcropDrop(OutcropDropData dropData, TechType outcropTechType, out OutcropDropData outputDropData)
+    {
+        return SetOutcropDrop(dropData.resourceTechType, outcropTechType, out outputDropData, dropData.chance);
+    }
+
+    /// <summary>
+    /// <inheritdoc cref="SetOutcropDrop(TechType, TechType, out OutcropDropData, float)"/>
+    /// </summary>
+    /// <param name="dropData">An instance of drop data.</param>
+    /// <param name="outcropTechType"><inheritdoc cref="SetOutcropDrop(TechType, TechType, out OutcropDropData, float)" path="/param[@name='outcropTechType']"/></param>
+    /// <returns><inheritdoc cref="SetOutcropDrop(TechType, TechType, out OutcropDropData, float)" path="/returns"/></returns>
+    public static bool SetOutcropDrop(OutcropDropData dropData, TechType outcropTechType)
+    {
+        return SetOutcropDrop(dropData.resourceTechType, outcropTechType, dropData.chance);
     }
 
     /// <summary>

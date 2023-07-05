@@ -1,14 +1,4 @@
-﻿using BepInEx.Bootstrap;
-using BepInEx.Configuration;
-using BepInEx.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nautilus.OutcropsHelper.Utility;
+﻿namespace CuddleLibs.Utility;
 
 internal class InternalLogger
 {
@@ -123,7 +113,7 @@ internal class InternalLogger
         {
             if (level >= LogLevel.Info || EnableDebugging)
             {
-                Console.WriteLine($"[NautilusOutcrops/{level}] {text}");
+                Console.WriteLine($"[{LibInfo.LIB_NAME}/{level}] {text}");
             }
 
             return;

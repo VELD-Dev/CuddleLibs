@@ -1,13 +1,4 @@
-﻿using HarmonyLib;
-using Nautilus.OutcropsHelper.Utility;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using Nautilus.OutcropsHelper.Interfaces;
-using Nautilus.Utility;
-using System;
-
-namespace Nautilus.OutcropsHelper.Patchers;
+﻿namespace CuddleLibs.Patchers;
 
 internal class BreakableResourcePatcher
 {
@@ -31,7 +22,7 @@ internal class BreakableResourcePatcher
         try
         {
             foreach (BreakableResource.RandomPrefab randPrefab in instance.prefabList)
-                OutcropsUtils.EnsureOutcropDrop(randPrefab.prefabTechType, outcropTechType, randPrefab.chance);
+                OutcropsUtils.SetOutcropDrop(randPrefab.prefabTechType, outcropTechType, randPrefab.chance);
         }
         catch(Exception e)
         {

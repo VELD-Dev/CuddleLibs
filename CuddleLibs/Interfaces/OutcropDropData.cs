@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Nautilus.OutcropsHelper.Interfaces;
+﻿namespace CuddleLibs.Interfaces;
 
 /// <summary>
 /// Representation of a an outcrop drop data.

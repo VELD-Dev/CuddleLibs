@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutcropsHelper", "OutcropsHelper\OutcropsHelper.csproj", "{D1126CE6-2AFC-4F66-86BE-1CCA43B3946C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CuddleLibs", "CuddleLibs\CuddleLibs.csproj", "{D1126CE6-2AFC-4F66-86BE-1CCA43B3946C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
