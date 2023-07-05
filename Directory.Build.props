@@ -1,0 +1,13 @@
+<Project>
+    <PropertyGroup>
+        <Authors>https://github.com/SubnauticaModding/Nautilus/graphs/contributors</Authors>
+        <DebugType>embedded</DebugType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageProjectUrl>https://github.com/SubnauticaModding/Nautilus</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/SubnauticaModding/Nautilus</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    </PropertyGroup>
+</Project>

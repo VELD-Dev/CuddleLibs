@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="ZipPlugin" AfterTargets="Build">
+        <PropertyGroup>
+            <BuildPath>Nautilus</BuildPath>
+            <PluginsDir>$(OutDir)\plugins</PluginsDir>
+            <BuildDir>$([System.IO.Path]::Combine('$(PluginsDir)', '$(BuildPath)'))</BuildDir>
+            <BuildZipPath>$([System.IO.Path]::Combine('$(TargetDir)', 'Nautilus_$(ConfigurationName).zip'))</BuildZipPath>
+            <TemporaryDir>$([System.IO.Path]::Combine('$(OutDir)', 'TemporaryDir'))</TemporaryDir>
+            <TemporaryBuildDir>$([System.IO.Path]::Combine('$(TemporaryDir)', 'Build'))</TemporaryBuildDir>
+        </PropertyGroup>
+
+        <!-- Remove prep dir and create fresh -->
+        <RemoveDir Directories="$(PluginsDir)" />
+        <MakeDir Directories="$(PluginsDir)" />
+        <MakeDir Directories="$(BuildDir)" />
+
+        <!-- Copy core mod files to build dir -->
+        <Copy SourceFiles="$([System.IO.Path]::Combine($(TargetDir), $(AssemblyName).xml))"
+              DestinationFolder="$(BuildDir)" />
+        <Copy SourceFiles="$([System.IO.Path]::Combine($(TargetDir), $(AssemblyName).dll))"
+              DestinationFolder="$(BuildDir)" />
+
+        <!-- Include all files that we will move to temporary dirs for multiple files copy -->
+        <ItemGroup>
+            <PluginsFiles Include="$(PluginsDir)\**\*.*" />
+        </ItemGroup>
+
+        <!-- Temporary folders for our two zip files for custom structure -->
+        <MakeDir Directories="$(TemporaryDir)" />
+        <MakeDir Directories="$(TemporaryBuildDir)" />
+
+        <!-- Main zip file -->
+        <Copy SourceFiles="@(PluginsFiles)" DestinationFolder="$(TemporaryBuildDir)\plugins\%(RecursiveDir)" SkipUnchangedFiles="true" />
+        
+        <!-- Main build zip file -->
+        <ZipDirectory SourceDirectory="$(TemporaryBuildDir)"
+                      DestinationFile="$(BuildZipPath)"
+                      Overwrite="true"/>
+
+        <RemoveDir Directories="$(TemporaryDir)" />
+    </Target>
+</Project>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="..\common.props" />
+  <Import Project="..\Version.targets" />
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <ProjectGuid>{D1126CE6-2AFC-4F66-86BE-1CCA43B3946C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nautilus.OutcropsHelper</RootNamespace>
+    <BepInExPluginGuid>com.snmodding.nautilus.outcropshelper</BepInExPluginGuid>
+    <BepInExPluginVersion>$(VersionPrefix)</BepInExPluginVersion>
+    <AssemblyName>OutcropsHelper</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <Configurations>SN.STABLE;BZ.STABLE</Configurations>
+    <LangVersion>11</LangVersion>
+    <FileAlignment>512</FileAlignment>
+    <Copyright>Copyright @ 2019</Copyright>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <DocumentationFile>bin\Debug\Nautilus.xml</DocumentationFile>
+    <Description>Core library for modding Subnautica and Below Zero.</Description>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>BELOWZERO;BELOWZERO_STABLE</DefineConstants>
+    <DocumentationFile>bin\Release\Nautilus.xml</DocumentationFile>
+    <Description>Core library for modding Subnautica and Below Zero.</Description>
+    <PackageId>Subnautica.Nautilus</PackageId>
+    <PackageTags>Nautilus;Subnautica Below Zero Modding Library;Subnautica Below Zero Modding API;SubnauticaZero;BZ;Subnautica Modding Library;Subnautica Modding API;Subnautica;SN1;Modding;Library;API;Extension;Outcrops</PackageTags>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SN.STABLE|AnyCPU'">
+    <OutputPath>bin\SN.STABLE\</OutputPath>
+    <DefineConstants>SUBNAUTICA;SUBNAUTICA_STABLE</DefineConstants>
+    <DocumentationFile>bin\SN.STABLE\Nautilus.xml</DocumentationFile>
+    <Description>Core library for modding Subnautica.</Description>
+    <PackageId>Subnautica.Nautilus</PackageId>
+    <PackageTags>Nautilus;Subnautica Modding Library;Subnautica Modding API;Subnautica;SN1;Modding;Library;API;Extension;Outcrops</PackageTags>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'BZ.STABLE|AnyCPU'">
+    <OutputPath>bin\BZ.STABLE\</OutputPath>
+    <DefineConstants>BELOWZERO;BELOWZERO_STABLE</DefineConstants>
+    <DocumentationFile>bin\BZ.STABLE\Nautilus.xml</DocumentationFile>
+    <Description>Core library for modding Subnautica: Below Zero.</Description>
+    <PackageId>SubnauticaZero.Nautilus</PackageId>
+    <PackageTags>Nautilus;Subnautica Below Zero Modding Library;Subnautica Below Zero Modding API;Subnautica;SN1;Modding;Library;API;Extension;Outcrops</PackageTags>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Below Zero|AnyCPU'">
+    <OutputPath>bin\Below Zero\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Nautilus">
+      <HintPath>B:\SteamLibrary\steamapps\common\SubnauticaZero\BepInEx\plugins\Nautilus\Nautilus.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Gadgets\GadgetExtensions.cs" />
+    <Compile Include="Interfaces\OutcropDropData.cs" />
+    <Compile Include="Patchers\BreakableResourcePatcher.cs" />
+    <Compile Include="Initializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\InternalLogger.cs" />
+    <Compile Include="Utility\OutcropsUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="BepInEx.BaseLib">
+      <Version>5.4.20</Version>
+    </PackageReference>
+    <PackageReference Include="HarmonyX">
+      <Version>2.10.1</Version>
+    </PackageReference>
+    <PackageReference Include="Mono.Cecil">
+      <Version>0.11.5</Version>
+    </PackageReference>
+    <PackageReference Include="MonoMod.RuntimeDetour">
+      <Version>25.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="MonoMod.Utils">
+      <Version>25.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="UnityEngine.Modules" Version="2019.4.36" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.1.0" />
+    <PackageReference Include="PolySharp" Version="1.13.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <Publicize Include="Newtonsoft.Json" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

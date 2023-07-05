@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutcropsHelper", "OutcropsHelper\OutcropsHelper.csproj", "{D1126CE6-2AFC-4F66-86BE-1CCA43B3946C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		BZ.STABLE|Any CPU = BZ.STABLE|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		SN.STABLE|Any CPU = SN.STABLE|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1126CE6-2AFC-4F66-86BE-1CCA43B3946C}.BZ.STABLE|Any CPU.ActiveCfg = BZ.STABLE|Any CPU
+		{D1126CE6-2AFC-4F66-86BE-1CCA43B3946C}.BZ.STABLE|Any CPU.Build.0 = BZ.STABLE|Any CPU
+		{D1126CE6-2AFC-4F66-86BE-1CCA43B3946C}.Debug|Any CPU.ActiveCfg = SN.STABLE|Any CPU
+		{D1126CE6-2AFC-4F66-86BE-1CCA43B3946C}.Debug|Any CPU.Build.0 = SN.STABLE|Any CPU
+		{D1126CE6-2AFC-4F66-86BE-1CCA43B3946C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1126CE6-2AFC-4F66-86BE-1CCA43B3946C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1126CE6-2AFC-4F66-86BE-1CCA43B3946C}.SN.STABLE|Any CPU.ActiveCfg = SN.STABLE|Any CPU
+		{D1126CE6-2AFC-4F66-86BE-1CCA43B3946C}.SN.STABLE|Any CPU.Build.0 = SN.STABLE|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56B417D1-4561-438E-8EB8-0FED8CF64095}
+	EndGlobalSection
+EndGlobal
