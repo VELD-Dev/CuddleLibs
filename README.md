@@ -16,6 +16,7 @@ Then, all you have to do is to add it as a reference and you're ready to go, the
 
 ## 🪨 `Nautilus.OutcropsHelper`
 ![GitHub tag (with filter)](https://img.shields.io/github/v/tag/VELD-Dev/Nautilus-Extensions?filter=outrcrops-*&label=outcrops-helper)  
+  
 Nautilus Outcrops Helper is a lib that lets developers easily add their ores to drops of certain chunks/outcrops, for example I can add a Coal drop to Limestones by doing this:
 
 ```csharp
