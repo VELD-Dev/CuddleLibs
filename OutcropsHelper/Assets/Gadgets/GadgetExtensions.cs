@@ -18,7 +18,7 @@ public static class GadgetExtension
     /// <returns>An instance of the created OutcropDropData for debug purposes.</returns>
     public static OutcropDropData SetOutcropDrop(this ICustomPrefab customPrefab, TechType outcropTechType, float chance = 0.5f)
     {
-        return OutcropsUtils.AddOrUpdateOutcropDrop(customPrefab.Info.TechType, outcropTechType, chance);
+        return OutcropsUtils.EnsureOutcropDrop(customPrefab.Info.TechType, outcropTechType, chance);
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ public static class GadgetExtension
         OutcropDropData[] array = new OutcropDropData[data.Length];
         foreach(var kvp in data)
         {
-            array.Add(OutcropsUtils.AddOrUpdateOutcropDrop(customPrefab.Info.TechType, kvp.Key, kvp.Value));
+            array.Add(OutcropsUtils.EnsureOutcropDrop(customPrefab.Info.TechType, kvp.Key, kvp.Value));
         }
         return array;
     }

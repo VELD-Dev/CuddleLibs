@@ -27,24 +27,21 @@ internal class BreakableResourcePatcher
             return;
 
         var instance = __instance as BreakableResource;
+        TechType outcropTechType = CraftData.GetTechType(instance.gameObject);
         try
         {
-            TechType outcropTechType = CraftData.GetTechType(instance.gameObject);
-            List<OutcropDropData> convertedDropsDatas = new();
-            if (!CustomDrops.ContainsKey(outcropTechType))
-            {
-                CustomDrops.Add(outcropTechType, new());
-            }
-
             foreach (BreakableResource.RandomPrefab randPrefab in instance.prefabList)
-                convertedDropsDatas.Add(randPrefab.ToOutcropDropData());
-
-            CustomDrops[outcropTechType].Union(convertedDropsDatas).ToList();
+                OutcropsUtils.EnsureOutcropDrop(randPrefab.prefabTechType, outcropTechType, randPrefab.chance);
         }
         catch(Exception e)
         {
-            InternalLogger.Error($"An error has ocurred while patching HandTarget.Awake():\n{e}");
+            InternalLogger.Error($"An error has ocurred while patching HandTarget.Awake() when adding original drops for outcrop {outcropTechType}.\n{e}");
         }
+
+        // Ensuring entropy, it can only be called when Player.main exists.
+        foreach (var kvp in CustomDrops)
+            foreach (var dropData in kvp.Value)
+                OutcropsUtils.EnsureTechEntropy(dropData.resourceTechType);
     }
 
     [HarmonyPrefix]
@@ -93,12 +90,12 @@ internal class BreakableResourcePatcher
             foreach (var kvp in CustomDrops)
             {
                 InternalLogger.Debug($"{kvp.Key}:");
-                InternalLogger.Debug("{");
+                InternalLogger.Debug("\t{");
                 foreach (var dropData in kvp.Value)
                 {
-                    InternalLogger.Debug(dropData.ToString());
+                    InternalLogger.Debug($"\t\t{dropData}");
                 }
-                InternalLogger.Debug("},");
+                InternalLogger.Debug("\t},");
             }
             InternalLogger.Debug("}");
 
