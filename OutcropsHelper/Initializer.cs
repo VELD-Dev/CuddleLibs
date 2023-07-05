@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BepInEx;
+﻿using BepInEx;
+using HarmonyLib;
+using Nautilus.OutcropsHelper.Patchers;
+using Nautilus.OutcropsHelper.Utility;
 
 namespace Nautilus.OutcropsHelper;
 
 [BepInPlugin("com.snmodding.nautilus.outcropshelper", "Nautilus Outcrops Extension", "1.0.0")]
-public class Initializer : BaseUnityPlugin
+internal class Initializer : BaseUnityPlugin
 {
     private void Awake()
     {
+        InternalLogger.Initialize(Logger);
+        var harmony = new Harmony("com.snmodding.nautilus.outcropshelper");
 
+        InternalLogger.Info("Using Nautilus.OutcropsHelper");
+        BreakableResourcePatcher.Patch(harmony);
     }
 }

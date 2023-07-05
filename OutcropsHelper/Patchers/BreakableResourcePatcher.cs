@@ -1,18 +1,14 @@
 ﻿using HarmonyLib;
 using Nautilus.OutcropsHelper.Utility;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine.AddressableAssets;
 using UnityEngine;
 using Nautilus.OutcropsHelper.Interfaces;
 using Nautilus.Utility;
+using System;
 
 namespace Nautilus.OutcropsHelper.Patchers;
 
-[HarmonyPatch(typeof(BreakableResource))]
 internal class BreakableResourcePatcher
 {
     internal static void Patch(Harmony harmony)
@@ -24,24 +20,35 @@ internal class BreakableResourcePatcher
     public static IDictionary<TechType, List<OutcropDropData>> CustomDrops = new SelfCheckingDictionary<TechType, List<OutcropDropData>>("CustomOutcropsDrops");
 
     [HarmonyPostfix]
-    [HarmonyPatch(nameof(BreakableResource.Awake))]
-    private static void Awake(BreakableResource __instance)
+    [HarmonyPatch(typeof(HandTarget), nameof(HandTarget.Awake))]
+    private static void Awake(HandTarget __instance)
     {
-        TechType outcropTechType = __instance.gameObject.GetComponent<TechTag>().type;
-        List<OutcropDropData> convertedDropsDatas = new();
-        if(!CustomDrops.ContainsKey(outcropTechType))
+        if (__instance is not BreakableResource)
+            return;
+
+        var instance = __instance as BreakableResource;
+        try
         {
-            CustomDrops.Add(outcropTechType, new());
+            TechType outcropTechType = CraftData.GetTechType(instance.gameObject);
+            List<OutcropDropData> convertedDropsDatas = new();
+            if (!CustomDrops.ContainsKey(outcropTechType))
+            {
+                CustomDrops.Add(outcropTechType, new());
+            }
+
+            foreach (BreakableResource.RandomPrefab randPrefab in instance.prefabList)
+                convertedDropsDatas.Add(randPrefab.ToOutcropDropData());
+
+            CustomDrops[outcropTechType].Union(convertedDropsDatas).ToList();
         }
-
-        foreach (BreakableResource.RandomPrefab randPrefab in __instance.prefabList)
-            convertedDropsDatas.Add(randPrefab.ToOutcropDropData());
-
-        CustomDrops[outcropTechType].Union(convertedDropsDatas).ToList();
+        catch(Exception e)
+        {
+            InternalLogger.Error($"An error has ocurred while patching HandTarget.Awake():\n{e}");
+        }
     }
 
     [HarmonyPrefix]
-    [HarmonyPatch(nameof(BreakableResource.BreakIntoResources))]
+    [HarmonyPatch(typeof(BreakableResource), nameof(BreakableResource.BreakIntoResources))]
     private static bool BreakIntoResources(BreakableResource __instance)
     {
         if (!__instance.broken)
@@ -66,12 +73,14 @@ internal class BreakableResourcePatcher
                 TechType chosenResource = __instance.ChooseRandomResourceTechType();
                 if (chosenResource != TechType.None)
                 {
+                    InternalLogger.Info($"Chosen resource TechType: {chosenResource}");
                     __instance.SpawnResourceFromTechType(chosenResource);
                     spawnSuccessful = true;
                 }
             }
             if (!spawnSuccessful)
             {
+                InternalLogger.Error("Spawn wasn't successful. Inspection needed at line BreakableResourcePatcher.cs:84");
                 __instance.SpawnResourceFromPrefab(__instance.defaultPrefabReference);
             }
             FMODUWE.PlayOneShot(__instance.breakSound, __instance.transform.position, 1f);
@@ -79,6 +88,20 @@ internal class BreakableResourcePatcher
             {
                 global::Utils.PlayOneShotPS(__instance.breakFX, __instance.transform.position, Quaternion.Euler(new Vector3(270f, 0f, 0f)), null);
             }
+            InternalLogger.Debug($"Registered Custom Drops: {CustomDrops}");
+            InternalLogger.Debug("CustomDrops = {");
+            foreach (var kvp in CustomDrops)
+            {
+                InternalLogger.Debug($"{kvp.Key}:");
+                InternalLogger.Debug("{");
+                foreach (var dropData in kvp.Value)
+                {
+                    InternalLogger.Debug(dropData.ToString());
+                }
+                InternalLogger.Debug("},");
+            }
+            InternalLogger.Debug("}");
+
             return false;
         }
         return false;

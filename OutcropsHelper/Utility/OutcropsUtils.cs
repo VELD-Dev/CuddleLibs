@@ -1,14 +1,9 @@
-﻿using Nautilus.Assets;
-using Nautilus.OutcropsHelper.Interfaces;
+﻿using Nautilus.OutcropsHelper.Interfaces;
 using Nautilus.OutcropsHelper.Patchers;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UWE;
 
 namespace Nautilus.OutcropsHelper.Utility;
@@ -29,13 +24,21 @@ public static class OutcropsUtils
         List<OutcropDropData> convertedDropsDatas = new();
 
         foreach (BreakableResource.RandomPrefab randPrefab in instance.prefabList)
-            convertedDropsDatas.Add(randPrefab.ToOutcropDropData());
+        {
+            var randPrefabDropData = randPrefab.ToOutcropDropData();
+            InternalLogger.Debug($"Random Prefab Drop Data (converted):\n{randPrefabDropData}");
+            convertedDropsDatas.Add(randPrefabDropData);
+        }
 
-        BreakableResourcePatcher.CustomDrops.TryGetValue(instance.gameObject.GetComponent<TechTag>().type, out var customDropsDatas);
+        var outcropTechType = CraftData.GetTechType(instance.gameObject);
+        if (!BreakableResourcePatcher.CustomDrops.TryGetValue(outcropTechType, out var customDropsDatas))
+        {
+            BreakableResourcePatcher.CustomDrops.Add(outcropTechType, new());
+        }
 
-        List<OutcropDropData> UnionedDropDatas = customDropsDatas.Union(convertedDropsDatas).ToList();
+        BreakableResourcePatcher.CustomDrops[outcropTechType] = customDropsDatas.Union(convertedDropsDatas).ToList();
 
-        foreach(OutcropDropData dropData in UnionedDropDatas)
+        foreach(OutcropDropData dropData in BreakableResourcePatcher.CustomDrops[outcropTechType])
         {
             InternalLogger.Debug($"Drop data: {dropData}");
             if (Player.main.gameObject.GetComponent<PlayerEntropy>().CheckChance(dropData.resourceTechType, dropData.chance))

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace Nautilus.OutcropsHelper.Interfaces;
 
@@ -39,13 +34,11 @@ public class OutcropDropData
     {
         var str = new StringBuilder();
         str.AppendLine("{");
-        var fields = typeof(OutcropDropData).GetType().GetFields();
+        var fields = typeof(OutcropDropData).GetFields();
         for (int i = 0; i < fields.Length; i++)
         {
             var item = fields[i];
-            str.AppendLine($"\t\t\t\t{item.FieldType} {item.Name}: {item.GetValue(this)}");
-            if (i != (fields.Length - 1))
-                str.Append(",");
+            str.AppendLine($"\t{item.FieldType} {item.Name}: {item.GetValue(this)}{(i != (fields.Length - 1) ? "," : string.Empty)}");
         }
         str.AppendLine("}");
         return str.ToString();

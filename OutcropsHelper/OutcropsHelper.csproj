@@ -12,7 +12,7 @@
     <RootNamespace>Nautilus.OutcropsHelper</RootNamespace>
     <BepInExPluginGuid>com.snmodding.nautilus.outcropshelper</BepInExPluginGuid>
     <BepInExPluginVersion>$(VersionPrefix)</BepInExPluginVersion>
-    <AssemblyName>OutcropsHelper</AssemblyName>
+    <AssemblyName>Nautilus.OutcropsHelper</AssemblyName>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <Configurations>SN.STABLE;BZ.STABLE</Configurations>
@@ -30,7 +30,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>BELOWZERO;BELOWZERO_STABLE</DefineConstants>
-    <DocumentationFile>bin\Release\Nautilus.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Nautilus.OutcropsHelper.xml</DocumentationFile>
     <Description>Core library for modding Subnautica and Below Zero.</Description>
     <PackageId>Subnautica.Nautilus</PackageId>
     <PackageTags>Nautilus;Subnautica Below Zero Modding Library;Subnautica Below Zero Modding API;SubnauticaZero;BZ;Subnautica Modding Library;Subnautica Modding API;Subnautica;SN1;Modding;Library;API;Extension;Outcrops</PackageTags>
@@ -55,6 +55,12 @@
     <OutputPath>bin\Below Zero\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>B:\SteamLibrary\steamapps\common\SubnauticaZero\BepInEx\core\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>B:\SteamLibrary\steamapps\common\SubnauticaZero\BepInEx\core\BepInEx.dll</HintPath>
+    </Reference>
     <Reference Include="Nautilus">
       <HintPath>B:\SteamLibrary\steamapps\common\SubnauticaZero\BepInEx\plugins\Nautilus\Nautilus.dll</HintPath>
     </Reference>
@@ -77,33 +83,13 @@
     <Compile Include="Utility\OutcropsUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.1">
+    <PackageReference Include="PolySharp">
+      <Version>1.13.2</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="BepInEx.BaseLib">
-      <Version>5.4.20</Version>
-    </PackageReference>
-    <PackageReference Include="HarmonyX">
-      <Version>2.10.1</Version>
-    </PackageReference>
-    <PackageReference Include="Mono.Cecil">
-      <Version>0.11.5</Version>
-    </PackageReference>
-    <PackageReference Include="MonoMod.RuntimeDetour">
-      <Version>25.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="MonoMod.Utils">
-      <Version>25.0.1</Version>
     </PackageReference>
     <PackageReference Include="UnityEngine.Modules" Version="2019.4.36" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
-    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.1.0" />
-    <PackageReference Include="PolySharp" Version="1.13.2">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <Publicize Include="Newtonsoft.Json" />
   </ItemGroup>
   <ItemGroup />
