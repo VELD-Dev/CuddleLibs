@@ -1,4 +1,5 @@
 ﻿using Nautilus.Assets;
+using Nautilus.Extensions;
 using Nautilus.OutcropsHelper.Interfaces;
 using Nautilus.OutcropsHelper.Patchers;
 using Nautilus.OutcropsHelper.Utility;
@@ -24,4 +25,20 @@ public static class GadgetExtension
         return OutcropsUtils.AddOrUpdateOutcropDrop(customPrefab.Info.TechType, outcropTechType, chance);
     }
 
+    /// <summary>
+    /// Make the item spawnable into several outcrop types.
+    /// <para>It can be used in addition to the other SetOutcropDrop overload, however the values will be overriden if a TechType exist in both overloads.</para>
+    /// </summary>
+    /// <param name="customPrefab"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public static OutcropDropData[] SetOutcropDrop(this ICustomPrefab customPrefab, params KeyValuePair<TechType, float>[] data)
+    {
+        OutcropDropData[] array = new OutcropDropData[data.Length];
+        foreach(var kvp in data)
+        {
+            array.Add(OutcropsUtils.AddOrUpdateOutcropDrop(customPrefab.Info.TechType, kvp.Key, kvp.Value));
+        }
+        return array;
+    }
 }
