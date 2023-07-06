@@ -192,9 +192,9 @@ public static class OutcropsUtils
     ///   <item><see cref="float"/>: percentage of chance to spawn the resource.</item>
     /// </list></param>
     /// <returns></returns>
-    public static OutcropDropData[] EnsureOutcropDrop(List<(TechType, TechType, float)> values)
+    public static OutcropDropData[] EnsureOutcropDrop(params (TechType, TechType, float)[] values)
     {
-        var array = new OutcropDropData[values.Count];
+        var array = new OutcropDropData[values.Length];
         foreach (var v in values)
             array.Add(EnsureOutcropDrop(v.Item1, v.Item2, v.Item3));
         return array;
