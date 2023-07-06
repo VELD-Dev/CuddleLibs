@@ -18,7 +18,8 @@ Then, all you have to do is to add it as a reference and you're ready to go, the
 ---
 
 ## 🪨 `CuddleLibs key features`
-![GitHub tag (with filter)](https://img.shields.io/github/v/tag/VELD-Dev/CuddleLibs)  
+![GitHub tag (with filter)](https://img.shields.io/github/v/tag/VELD-Dev/CuddleLibs)
+![GitHub all releases](https://img.shields.io/github/downloads/VELD-Dev/CuddleLibs/total)
   
 An non-exhaustive list of all the key features of CuddleLibs. I cannot put all of them on one page if someday there is too many features.
 
