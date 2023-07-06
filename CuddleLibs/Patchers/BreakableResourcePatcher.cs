@@ -22,7 +22,7 @@ internal class BreakableResourcePatcher
         try
         {
             foreach (BreakableResource.RandomPrefab randPrefab in instance.prefabList)
-                OutcropsUtils.SetOutcropDrop(randPrefab.prefabTechType, outcropTechType, randPrefab.chance);
+                OutcropsUtils.SetOutcropDrop(outcropTechType, randPrefab.prefabTechType, randPrefab.chance);
         }
         catch(Exception e)
         {
@@ -55,7 +55,7 @@ internal class BreakableResourcePatcher
             {
                 GoalManager.main.OnCustomGoalEvent(__instance.customGoalText);
             }
-            bool spawnSuccessful = false;
+            bool choosed = false;
             for (int i = 0; i < __instance.numChances; i++)
             {
                 TechType chosenResource = __instance.ChooseRandomResourceTechType();
@@ -63,12 +63,12 @@ internal class BreakableResourcePatcher
                 {
                     InternalLogger.Info($"Chosen resource TechType: {chosenResource}");
                     __instance.SpawnResourceFromTechType(chosenResource);
-                    spawnSuccessful = true;
+                    choosed = true;
                 }
             }
-            if (!spawnSuccessful)
+            if (!choosed)
             {
-                InternalLogger.Error("Spawn wasn't successful. Inspection needed at line BreakableResourcePatcher.cs:84");
+                // If not choosed, then spawn titanium instead.
                 __instance.SpawnResourceFromPrefab(__instance.defaultPrefabReference);
             }
             FMODUWE.PlayOneShot(__instance.breakSound, __instance.transform.position, 1f);
@@ -76,20 +76,22 @@ internal class BreakableResourcePatcher
             {
                 global::Utils.PlayOneShotPS(__instance.breakFX, __instance.transform.position, Quaternion.Euler(new Vector3(270f, 0f, 0f)), null);
             }
-            InternalLogger.Debug($"Registered Custom Drops: {CustomDrops}");
-            InternalLogger.Debug("CustomDrops = {");
+
+            var strBuilder = new StringBuilder();
+            strBuilder.AppendLine($"Registered Custom Drops: {CustomDrops}");
+            strBuilder.AppendLine("CustomDrops = {");
             foreach (var kvp in CustomDrops)
             {
-                InternalLogger.Debug($"{kvp.Key}:");
-                InternalLogger.Debug("\t{");
+                strBuilder.AppendLine($"{kvp.Key}:");
+                strBuilder.AppendLine("\t{");
                 foreach (var dropData in kvp.Value)
                 {
-                    InternalLogger.Debug($"\t\t{dropData}");
+                    strBuilder.AppendLine($"{dropData.ToString("\t\t")}");
                 }
-                InternalLogger.Debug("\t},");
+                strBuilder.AppendLine("\t},");
             }
-            InternalLogger.Debug("}");
-
+            strBuilder.AppendLine("}");
+            InternalLogger.Debug(strBuilder.ToString());
             return false;
         }
         return false;

@@ -41,4 +41,23 @@ public class OutcropDropData
         str.AppendLine("}");
         return str.ToString();
     }
+
+    /// <summary>
+    /// <inheritdoc cref="ToString()"/>
+    /// </summary>
+    /// <param name="prepend">A string that will be prepend to every line. It's better to use it with <c>\t</c> tabs for proper tabulation in logs.</param>
+    /// <returns></returns>
+    public string ToString(string prepend)
+    {
+        var str = new StringBuilder();
+        str.AppendLine($"{prepend}{{");
+        var fields = typeof(OutcropDropData).GetFields();
+        for (int i = 0; i < fields.Length; i++)
+        {
+            var item = fields[i];
+            str.AppendLine($"{prepend}\t{item.FieldType} {item.Name}: {item.GetValue(this)}{(i != (fields.Length - 1) ? "," : string.Empty)}");
+        }
+        str.AppendLine($"{prepend}}}");
+        return str.ToString();
+    }
 }

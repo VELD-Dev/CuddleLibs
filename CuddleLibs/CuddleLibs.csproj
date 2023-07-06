@@ -92,7 +92,6 @@
     </PackageReference>
     <PackageReference Include="UnityEngine.Modules" Version="2019.4.36" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <Publicize Include="Newtonsoft.Json" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
