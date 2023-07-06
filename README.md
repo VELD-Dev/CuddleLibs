@@ -1,7 +1,8 @@
 # 🫂 `CuddleLibs`
 ![Lines of code](https://img.shields.io/tokei/lines/github/VELD-Dev/Nautilus-Extensions)
+![GitHub all releases](https://img.shields.io/github/downloads/VELD-Dev/CuddleLibs/total)
+![GitHub tag (with filter)](https://img.shields.io/github/v/tag/VELD-Dev/CuddleLibs?label=cuddlelibs)
 ![GitHub tag](https://img.shields.io/github/v/tag/SubnauticaModding/Nautilus?label=nautilus)
-![GitHub tag](https://img.shields.io/github/v/tag/VELD-Dev/CuddleLibs?label=nautilus)    
   
 A bunch of libraries and extensions made by me for modders, they are globally only maintained by me and made for my needs, but I'm totally open to pull requests, suggestions, issues etc...  
 I've been working on that because many of my ideas would probably bloat Nautilus more than it is already, so I just make a bunch of additional libs.  
@@ -18,8 +19,6 @@ Then, all you have to do is to add it as a reference and you're ready to go, the
 ---
 
 ## 🪨 `CuddleLibs key features`
-![GitHub tag (with filter)](https://img.shields.io/github/v/tag/VELD-Dev/CuddleLibs)
-![GitHub all releases](https://img.shields.io/github/downloads/VELD-Dev/CuddleLibs/total)
   
 An non-exhaustive list of all the key features of CuddleLibs. I cannot put all of them on one page if someday there is too many features.
 
