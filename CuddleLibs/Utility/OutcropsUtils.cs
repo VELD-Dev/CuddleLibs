@@ -195,8 +195,11 @@ public static class OutcropsUtils
     public static OutcropDropData[] EnsureOutcropDrop(params (TechType, TechType, float)[] values)
     {
         var array = new OutcropDropData[values.Length];
-        foreach (var v in values)
-            array.Add(EnsureOutcropDrop(v.Item1, v.Item2, v.Item3));
+        for (int i = 0; i < values.Length; i++)
+        {
+            var v = values[i];
+            array[i] = EnsureOutcropDrop(v.Item1, v.Item2, v.Item3);
+        }
         return array;
     }
 
@@ -212,11 +215,14 @@ public static class OutcropsUtils
     ///   <item><see cref="OutcropDropData"/>: OutcropDropData of the resource.</item>
     /// </list></param>
     /// <returns></returns>
-    public static OutcropDropData[] EnsureOutcropDrop(List<(TechType, OutcropDropData)> values)
+    public static OutcropDropData[] EnsureOutcropDrop(param (TechType, OutcropDropData)[] values)
     {
-        var array = new OutcropDropData[values.Count];
-        foreach (var v in values)
-            array.Add(EnsureOutcropDrop(v.Item1, v.Item2));
+        var array = new OutcropDropData[values.Length];
+        for (int i = 0; i < values.Length)
+        {
+            var v = values[i];
+            array[i] = EnsureOutcropDrop(v.Item1, v.Item2);
+        }
         return array;
     }
 
