@@ -41,7 +41,7 @@ public static class OutcropsUtils
     /// <param name="techType"><see cref="TechType"/> the resource to spawn.</param>
     public static void SpawnResourceFromTechType(this BreakableResource instance, TechType techType)
     {
-        CoroutineHost.StartCoroutine(SpawnResourceAsync(techType, instance.transform.position + instance.transform.up * instance.verticalSpawnOffset, instance.transform));
+        CoroutineHost.StartCoroutine(SpawnResourceAsync(techType, instance.gameObject.transform.position + instance.gameObject.transform.up * instance.verticalSpawnOffset, instance.gameObject.transform));
     }
 
     /// <summary>
@@ -63,12 +63,21 @@ public static class OutcropsUtils
                 InternalLogger.Error("Failed to spawn {0}: Prefab is null.", techType);
                 yield break;
             }
-            EditorModifications.Instantiate<GameObject>(prefab, position, transform.rotation, true);
-            Rigidbody rigidbody = prefab.EnsureComponent<Rigidbody>();
+            Rigidbody rigidbody;
+            if(prefab.gameObject.GetComponentInChildren<Transform>() != null)
+            {
+                EditorModifications.Instantiate(prefab, transform, position, new Quaternion(0, 0, 0, 0), true);
+                rigidbody = prefab.EnsureComponent<Rigidbody>();
+                UWE.Utils.SetIsKinematicAndUpdateInterpolation(rigidbody, false, false);
+                rigidbody.AddTorque(Vector3.right * (float)UnityEngine.Random.Range(3, 6));
+                rigidbody.AddForce(new Vector3(0f, 90f, 0f) * 0.1f);
+                yield break;
+            }
+            EditorModifications.Instantiate(prefab, position, new(), true);
+            rigidbody = prefab.EnsureComponent<Rigidbody>();
             UWE.Utils.SetIsKinematicAndUpdateInterpolation(rigidbody, false, false);
             rigidbody.AddTorque(Vector3.right * (float)UnityEngine.Random.Range(3, 6));
-            rigidbody.AddForce(transform.up * 0.1f);
-            yield break;
+            rigidbody.AddForce(new Vector3(0f, 90f, 0f) *  0.1f);
         }
         catch(Exception e)
         {
@@ -302,7 +311,7 @@ public static class OutcropsUtils
 
             playerEntropy.randomizers.Add(techEntropy);
         }
-        InternalLogger.Debug($"Ensured a TechEntropy for {techEntropy.techType}, with a current Entropy of {techEntropy.entropy.entropy}.");
+        //InternalLogger.Debug($"Ensured a TechEntropy for {techEntropy.techType}, with a current Entropy of {techEntropy.entropy.entropy}.");
         return techEntropy;
     }
 }
