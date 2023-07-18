@@ -25,5 +25,6 @@ global using Nautilus.Utility;
 global using CuddleLibs;
 global using CuddleLibs.Assets.Gadgets;
 global using CuddleLibs.Interfaces;
+global using CuddleLibs.Interfaces.DropDatas;
 global using CuddleLibs.Patchers;
 global using CuddleLibs.Utility;

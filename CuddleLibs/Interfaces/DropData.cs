@@ -1,19 +1,19 @@
 ﻿namespace CuddleLibs.Interfaces;
 
 /// <summary>
-/// Representation of a an outcrop drop data.
+/// Rerpresentation of a drop data.
 /// </summary>
-public class OutcropDropData
+public abstract class DropData
 {
     /// <summary>
-    /// TechType of the resource to spawn.
+    /// <see cref="TechType"/> of the resource to drop.
     /// </summary>
-    public required TechType resourceTechType;
+    public required TechType TechType;
 
     /// <summary>
-    /// Percentage of chance to make it drop when the resource is broken (between 0 and 1).
+    /// Percentage of chance of spawning the item when it can drop.
     /// </summary>
-    public float chance = 0.5f;
+    public float chance;
 
     /// <summary>
     /// Gives a string representation of the <see cref="OutcropDropData"/>.

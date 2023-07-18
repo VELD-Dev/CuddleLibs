@@ -1,6 +1,6 @@
 ﻿namespace CuddleLibs.Patchers;
 
-internal class BreakableResourcePatcher
+internal static class BreakableResourcePatcher
 {
     internal static void Patch(Harmony harmony)
     {
@@ -32,7 +32,7 @@ internal class BreakableResourcePatcher
         // Ensuring entropy, it can only be called when Player.main exists.
         foreach (var kvp in CustomDrops)
             foreach (var dropData in kvp.Value)
-                OutcropsUtils.EnsureTechEntropy(dropData.resourceTechType);
+                EntropyUtils.EnsureTechEntropy(dropData.TechType);
     }
 
     [HarmonyPrefix]
@@ -62,7 +62,7 @@ internal class BreakableResourcePatcher
                 if (chosenResource != TechType.None)
                 {
                     InternalLogger.Info($"Chosen resource TechType: {chosenResource}");
-                    __instance.SpawnResourceFromTechType(chosenResource);
+                    SpawningUtils.SpawnResourceFromTechType(__instance.gameObject, chosenResource);
                     choosed = true;
                 }
             }

@@ -76,13 +76,20 @@
   <ItemGroup>
     <Compile Include="Assets\Gadgets\GadgetExtensions.cs" />
     <Compile Include="Global.cs" />
-    <Compile Include="Interfaces\OutcropDropData.cs" />
+    <Compile Include="Interfaces\DropsDatas\CreatureDropData.cs" />
+    <Compile Include="Interfaces\DropData.cs" />
+    <Compile Include="Interfaces\DropsDatas\OutcropDropData.cs" />
     <Compile Include="Patchers\BreakableResourcePatcher.cs" />
     <Compile Include="Initializer.cs" />
+    <Compile Include="Patchers\CreaturePatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\CreatureDropsUtils.cs" />
+    <Compile Include="Utility\EntropyUtils.cs" />
     <Compile Include="Utility\InternalLogger.cs" />
+    <Compile Include="Utility\JSONUtils.cs" />
     <Compile Include="Utility\OutcropsUtils.cs" />
     <Compile Include="LibInfo.cs" />
+    <Compile Include="Utility\SpawningUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="PolySharp">
