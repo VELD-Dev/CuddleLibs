@@ -61,9 +61,6 @@
     <Reference Include="BepInEx">
       <HintPath>B:\SteamLibrary\steamapps\common\SubnauticaZero\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
-    <Reference Include="Nautilus">
-      <HintPath>B:\SteamLibrary\steamapps\common\SubnauticaZero\BepInEx\plugins\Nautilus\Nautilus.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -90,7 +87,6 @@
     <Compile Include="Utility\OutcropsUtils.cs" />
     <Compile Include="LibInfo.cs" />
     <Compile Include="Utility\SpawningUtils.cs" />
-    <Compile Include="Utility\SpriteManagerUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="PolySharp">
