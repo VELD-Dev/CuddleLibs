@@ -8,7 +8,7 @@ internal static class BreakableResourcePatcher
         InternalLogger.Info("Finished patching BreakableResource.");
     }
 
-    public static IDictionary<TechType, List<OutcropDropData>> CustomDrops = new SelfCheckingDictionary<TechType, List<OutcropDropData>>("CustomOutcropsDrops");
+    public static IDictionary<TechType, List<OutcropDropData>> CustomDrops = new Dictionary<TechType, List<OutcropDropData>>("CustomOutcropsDrops");
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(HandTarget), nameof(HandTarget.Awake))]

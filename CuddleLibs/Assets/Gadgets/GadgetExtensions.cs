@@ -1,5 +1,8 @@
 ﻿namespace CuddleLibs.Assets.Gadgets;
 
+// May be removed someday.
+
+#if false
 /// <summary>
 /// <inheritdoc cref="Nautilus.Assets.Gadgets.GadgetExtensions"/>
 /// </summary>
@@ -84,3 +87,4 @@ public static class GadgetExtension
         return array;
     }
 }
+#endif

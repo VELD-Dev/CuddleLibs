@@ -90,6 +90,7 @@
     <Compile Include="Utility\OutcropsUtils.cs" />
     <Compile Include="LibInfo.cs" />
     <Compile Include="Utility\SpawningUtils.cs" />
+    <Compile Include="Utility\SpriteManagerUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="PolySharp">
