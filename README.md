@@ -27,16 +27,9 @@ An non-exhaustive list of all the key features of CuddleLibs. I cannot put all o
 CuddleLibs has an incorporated module that lets developers easily add their ores to drops of certain chunks/outcrops, for example I can add a Coal drop to Limestones by doing this:
 
 ```csharp
-// The first argument is the Outcrop TechType.
-// The second argument is the spawn chance between 0 and 1, based on something UWE called "Player Entropy" which globally computes the luck of the player.
-coalCustomPrefab.SetOutcropDrop(TechType.LimestoneChunk, 0.71f);
-
-// And if I want to add it to several outcrops, here it is:
-coalCustomPrefab.SetOutcropDrop(
-    new KeyValuePair<TechType, float>(TechType.BreakableLead, 0.56f),
-    new(TechType.BreakableSilver, 0.2f),
-    new(TechType.ObsidianChunk, 0.47f)
-);
+// coalTechType may be obtained with whatever library you're using, with Nautilus you can get the
+// TechType with customPrefab.Info.TechType; With SMLHelper you can use MyClass.TechType;
+OutcropsUtils.EnsureOutcropDrop(coalTechType, TechType.LimestoneChunk, chance: 0.2f);
 
 // If we want to override the spawn chance of an existing ore:
 OutcropsUtils.EnsureOutcropDrop(TechType.Copper, TechType.LimestoneChunk, chance: 0.6f);  // Spawn chances are extremely high, here.
@@ -51,8 +44,7 @@ I hope you'll use it if you make mods like that, the good point is that it does 
 Here are some instructions on how to install CuddleLibs, even if it's like every BepInEx mod, you may need that just in case.
 
 ### Dependencies
-- The great, [**Tobey's BepInEx Pack**](https://github.com/toebeann/BepInEx.Subnautica/releases) **OR** [**BepInEx 5.4.21+**](https://github.com/BepInEx/BepInEx/releases)
-- The fantastic library, [**Nautilus v1.0.0+**](https://github.com/SubnauticaModding/Nautilus/releases)
+- [**Tobey's BepInEx Pack**](https://github.com/toebeann/BepInEx.Subnautica/releases) **OR** [**BepInEx 5.4.21+**](https://github.com/BepInEx/BepInEx/releases) (you can as well only download BepInEx, it works very well too)
 
 ### Dependants
-- The fantastic [**Alterra Weaponry**](https://github.com/VELD-Dev/Alterra-Weaponry/releases) ! By... myself.
+- The great [**Alterra Weaponry**](https://github.com/VELD-Dev/Alterra-Weaponry/releases) ! (made by me lol)
