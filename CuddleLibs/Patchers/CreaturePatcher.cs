@@ -14,7 +14,7 @@ internal class CreaturePatcher
         InternalLogger.Info("Finished patching Creature.");
     }
 
-    public static IDictionary<TechType, List<CreatureDropData>> CustomDrops = new Dictionary<TechType, List<CreatureDropData>>("CustomCreatureDrops");
+    public static IDictionary<TechType, List<CreatureDropData>> CustomDrops = new Dictionary<TechType, List<CreatureDropData>>();
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Creature), nameof(Creature.OnKill))]
