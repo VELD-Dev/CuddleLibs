@@ -44,7 +44,7 @@ I hope you'll use it if you make mods like that, the good point is that it does 
 Here are some instructions on how to install CuddleLibs, even if it's like every BepInEx mod, you may need that just in case.
 
 ### Dependencies
-- [**Tobey's BepInEx Pack**](https://github.com/toebeann/BepInEx.Subnautica/releases) **OR** [**BepInEx 5.4.21+**](https://github.com/BepInEx/BepInEx/releases) (you can as well only download BepInEx, it works very well too)
+- [**Tobey's BepInEx Pack**](https://github.com/toebeann/BepInEx.Subnautica/releases) **OR** [**BepInEx 5.4.21+**](https://github.com/BepInEx/BepInEx/releases) (BepInEx alone is lighter, it is better for random players.)
 
 ### Dependants
 - The great [**Alterra Weaponry**](https://github.com/VELD-Dev/Alterra-Weaponry/releases) ! (made by me lol)
