@@ -56,10 +56,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>B:\soft\Steam\steamapps\common\SubnauticaZero\BepInEx\core\0Harmony.dll</HintPath>
+      <HintPath>B:\SteamLibrary\steamapps\common\SubnauticaZero\BepInEx\core\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
-      <HintPath>B:\soft\Steam\steamapps\common\SubnauticaZero\BepInEx\core\BepInEx.dll</HintPath>
+      <HintPath>B:\SteamLibrary\steamapps\common\SubnauticaZero\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Gadgets\GadgetExtensions.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Interfaces\DropsDatas\CreatureDropData.cs" />
     <Compile Include="Interfaces\DropData.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Utility\OutcropsUtils.cs" />
     <Compile Include="LibInfo.cs" />
     <Compile Include="Utility\SpawningUtils.cs" />
+    <Compile Include="Utility\SpriteManagerUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="PolySharp">
@@ -96,8 +98,6 @@
     <PackageReference Include="UnityEngine.Modules" Version="2019.4.36" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\Gadgets\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
