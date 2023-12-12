@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-namespace CuddleLibs.Interfaces.DropDatas;
+﻿namespace CuddleLibs.Interfaces.DropDatas;
 
 /// <summary>
 /// Representation of a creature drop data.
