@@ -17,6 +17,6 @@ public sealed class LibInfo : BepInEx.PluginInfo
     public const string LIB_NAME = "CuddleLibs";
     public const string LIB_DISPLAYNAME = "Cuddle Libs";
     public const string LIB_VERS = "1.0.3";
-    public const string LIB_LONGVERSION = "1.0.2.1";
+    public const string LIB_LONGVERSION = "1.0.3";
 #pragma warning restore CS1591
 }
