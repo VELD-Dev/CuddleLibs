@@ -61,9 +61,6 @@
     <Reference Include="BepInEx">
       <HintPath>B:\SteamLibrary\steamapps\common\SubnauticaZero\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
-    <Reference Include="Nautilus">
-      <HintPath>B:\SteamLibrary\steamapps\common\SubnauticaZero\BepInEx\plugins\Nautilus\Nautilus.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
