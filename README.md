@@ -1,5 +1,6 @@
 # 🫂 `CuddleLibs`
 ![Lines of code](https://img.shields.io/tokei/lines/github/VELD-Dev/Nautilus-Extensions)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/735e6021dfd8498689e12e43aa30ca88)](https://app.codacy.com/gh/VELD-Dev/CuddleLibs/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 ![GitHub all releases](https://img.shields.io/github/downloads/VELD-Dev/CuddleLibs/total)
 ![GitHub tag (with filter)](https://img.shields.io/github/v/tag/VELD-Dev/CuddleLibs?label=cuddlelibs)
 ![GitHub tag](https://img.shields.io/github/v/tag/SubnauticaModding/Nautilus?label=nautilus)
